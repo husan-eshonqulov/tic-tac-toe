@@ -1,8 +1,12 @@
 import { BoardType } from "../../state/reducers/allReducers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { moveX, moveO } from "../../state/actions/allActions";
 
-function Board({ cells }: { cells: BoardType }) {
+let last = "O",
+  move;
+
+function Board() {
+  const cells = useSelector<BoardType, BoardType>((state) => state);
   const dispatch = useDispatch();
   const rowsLen = cells.length;
   const colsLen = cells[0].length;
@@ -12,7 +16,14 @@ function Board({ cells }: { cells: BoardType }) {
     const tr = [];
     for (let col = 0; col < colsLen; col++) {
       tr.push(
-        <td onClick={() => dispatch(moveX(row, col))} key={`${row},${col}`}>
+        <td
+          onClick={() => {
+            move = last === "O" ? moveX : moveO;
+            dispatch(move(row, col));
+            last = last === "O" ? "X" : "O";
+          }}
+          key={`${row},${col}`}
+        >
           {cells[row][col]}
         </td>
       );
