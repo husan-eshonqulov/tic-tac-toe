@@ -6,6 +6,9 @@ function winnerReducer(state = "", action: { type: string; payload: string }) {
     case "winner/o":
       return "O";
 
+    case "winner/draw":
+      return "draw";
+
     default:
       return state;
   }

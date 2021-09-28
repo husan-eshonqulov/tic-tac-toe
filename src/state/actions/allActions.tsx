@@ -23,3 +23,21 @@ export function turnX() {
     type: "turn/x",
   };
 }
+
+export function winnerX() {
+  return {
+    type: "winner/x",
+  };
+}
+
+export function winnerO() {
+  return {
+    type: "winner/o",
+  };
+}
+
+export function winnerDraw() {
+  return {
+    type: "winner/draw",
+  };
+}
