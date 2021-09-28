@@ -11,3 +11,15 @@ export function moveO(rowI: number, colI: number) {
     payload: [rowI, colI],
   };
 }
+
+export function turnO() {
+  return {
+    type: "turn/o",
+  };
+}
+
+export function turnX() {
+  return {
+    type: "turn/x",
+  };
+}

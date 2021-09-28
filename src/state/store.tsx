@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import allReducers from "../state/reducers/allReducers";
+import allReducers from "./reducers/allReducers";
 
 const store = createStore(allReducers);
 store.subscribe(() => console.log(store.getState()));

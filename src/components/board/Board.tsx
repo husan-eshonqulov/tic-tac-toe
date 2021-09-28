@@ -1,15 +1,17 @@
-import { BoardType } from "../../state/reducers/allReducers";
+import { BoardType } from "../../state/reducers/moveReducer";
+import { StateType } from "../../state/reducers/allReducers";
 import { useDispatch, useSelector } from "react-redux";
-import { moveX, moveO } from "../../state/actions/allActions";
+import { moveX, moveO, turnO, turnX } from "../../state/actions/allActions";
 
 function Board() {
-  const board = useSelector<BoardType, string[][]>((state) => state.board);
-  const turn = useSelector<BoardType, string>((state) => state.turn);
+  const board = useSelector<StateType, BoardType>((state) => state.board);
+  const turn = useSelector<StateType, string>((state) => state.turn);
   const dispatch = useDispatch();
   const rowsLen = board.length;
   const colsLen = board[0].length;
   const rows = [];
   const move = turn === "X" ? moveX : moveO;
+  const turnF = turn === "X" ? turnO : turnX;
 
   for (let row = 0; row < rowsLen; row++) {
     const tr = [];
@@ -17,7 +19,10 @@ function Board() {
       tr.push(
         <td
           onClick={() => {
-            if (board[row][col] === "") dispatch(move(row, col));
+            if (board[row][col] === "") {
+              dispatch(move(row, col));
+              dispatch(turnF());
+            }
           }}
           key={`${row},${col}`}
         >
