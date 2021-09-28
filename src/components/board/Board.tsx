@@ -2,15 +2,14 @@ import { BoardType } from "../../state/reducers/allReducers";
 import { useDispatch, useSelector } from "react-redux";
 import { moveX, moveO } from "../../state/actions/allActions";
 
-let last = "O",
-  move;
-
 function Board() {
-  const cells = useSelector<BoardType, BoardType>((state) => state);
+  const board = useSelector<BoardType, string[][]>((state) => state.board);
+  const turn = useSelector<BoardType, string>((state) => state.turn);
   const dispatch = useDispatch();
-  const rowsLen = cells.length;
-  const colsLen = cells[0].length;
+  const rowsLen = board.length;
+  const colsLen = board[0].length;
   const rows = [];
+  const move = turn === "X" ? moveX : moveO;
 
   for (let row = 0; row < rowsLen; row++) {
     const tr = [];
@@ -18,13 +17,11 @@ function Board() {
       tr.push(
         <td
           onClick={() => {
-            move = last === "O" ? moveX : moveO;
-            dispatch(move(row, col));
-            last = last === "O" ? "X" : "O";
+            if (board[row][col] === "") dispatch(move(row, col));
           }}
           key={`${row},${col}`}
         >
-          {cells[row][col]}
+          {board[row][col]}
         </td>
       );
     }

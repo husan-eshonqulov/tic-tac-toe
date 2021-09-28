@@ -1,10 +1,16 @@
-export type BoardType = string[][];
+export type BoardType = {
+  board: string[][];
+  turn: string;
+};
 
-const initialBoard: BoardType = [
-  ["", "", ""],
-  ["", "", ""],
-  ["", "", ""],
-];
+const initialBoard: BoardType = {
+  board: [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ],
+  turn: "X",
+};
 
 function allReducers(
   state = initialBoard,
@@ -12,18 +18,18 @@ function allReducers(
 ) {
   switch (action.type) {
     case "move/x":
-      const stateX = state;
+      const stateX = [...state.board];
       const rowX = action.payload[0],
         colX = action.payload[1];
       stateX[rowX][colX] = "X";
-      return stateX;
+      return { board: stateX, turn: "O" };
 
     case "move/o":
-      const stateO = state;
+      const stateO = [...state.board];
       const rowO = action.payload[0],
         colO = action.payload[1];
       stateO[rowO][colO] = "O";
-      return stateO;
+      return { board: stateO, turn: "X" };
 
     default:
       return state;
