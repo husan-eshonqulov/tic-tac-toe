@@ -3,9 +3,9 @@ import Board from "../board/Board";
 import { useSelector } from "react-redux";
 import { StateType } from "../../state/reducers/allReducers";
 import ResBoard from "../resBoard/ResBoard";
+import PlayAgain from "../playAgain/PlayAgain";
 
 function App() {
-  // console.log("App");
   const turn = useSelector<StateType, string>((state) => state.turn);
   const winner = useSelector<StateType, string>((state) => state.winner);
   let view;
@@ -23,8 +23,11 @@ function App() {
     view = (
       <>
         <ResBoard />
-        <div className="mt-3" style={{ marginBottom: "10em" }}>
+        <div className="mt-3">
           <h3>Winner: {winner}</h3>
+        </div>
+        <div className="mt-3" style={{ marginBottom: "7em" }}>
+          <PlayAgain />
         </div>
       </>
     );

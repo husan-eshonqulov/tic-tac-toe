@@ -6,6 +6,9 @@ function turnReducer(state = "X", action: { type: string }) {
     case "turn/x":
       return "X";
 
+    case "turn/erase":
+      return "X";
+
     default:
       return state;
   }

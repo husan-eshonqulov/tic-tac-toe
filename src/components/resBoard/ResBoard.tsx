@@ -11,9 +11,13 @@ function ResBoard() {
   for (let row = 0; row < rowLen; row++) {
     const tr = [];
     for (let col = 0; col < colLen; col++) {
-      tr.push(<td style={{ cursor: "default" }}>{board[row][col]}</td>);
+      tr.push(
+        <td style={{ cursor: "default" }} key={`${row},${col}`}>
+          {board[row][col]}
+        </td>
+      );
     }
-    rows.push(<tr>{tr}</tr>);
+    rows.push(<tr key={row}>{tr}</tr>);
   }
 
   return (

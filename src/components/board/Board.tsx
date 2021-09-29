@@ -13,7 +13,6 @@ import {
 import { detWinner } from "../../function";
 
 function Board() {
-  // console.log("Board");
   const board = useSelector<StateType, BoardType>((state) => state.board);
   const turn = useSelector<StateType, string>((state) => state.turn);
   const dispatch = useDispatch();
@@ -32,6 +31,8 @@ function Board() {
             if (board[row][col] === "") {
               dispatch(move(row, col));
               const winner = detWinner(board);
+              console.log(board);
+              console.log(winner);
               let getWinner = () => {
                 return {
                   type: "Pending",

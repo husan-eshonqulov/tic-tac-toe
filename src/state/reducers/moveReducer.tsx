@@ -25,6 +25,13 @@ function moveReducer(
       stateO[rowO][colO] = "O";
       return stateO;
 
+    case "board/erase":
+      return [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+      ];
+
     default:
       return state;
   }

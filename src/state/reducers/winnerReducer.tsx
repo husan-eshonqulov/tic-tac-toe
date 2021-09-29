@@ -7,7 +7,10 @@ function winnerReducer(state = "", action: { type: string; payload: string }) {
       return "O";
 
     case "winner/draw":
-      return "draw";
+      return "Draw";
+
+    case "winner/erase":
+      return "";
 
     default:
       return state;
