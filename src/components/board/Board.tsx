@@ -13,6 +13,7 @@ import {
 import { detWinner } from "../../function";
 
 function Board() {
+  // console.log("Board");
   const board = useSelector<StateType, BoardType>((state) => state.board);
   const turn = useSelector<StateType, string>((state) => state.turn);
   const dispatch = useDispatch();
@@ -21,16 +22,6 @@ function Board() {
   const rows = [];
   const move = turn === "X" ? moveX : moveO;
   const turnF = turn === "X" ? turnO : turnX;
-  const winner = detWinner(board);
-  let getWinner = () => {
-    return {
-      type: "Pending",
-    };
-  };
-
-  if (winner === "X") getWinner = winnerX;
-  if (winner === "O") getWinner = winnerO;
-  if (winner === "Draw") getWinner = winnerDraw;
 
   for (let row = 0; row < rowsLen; row++) {
     const tr = [];
@@ -40,6 +31,16 @@ function Board() {
           onClick={() => {
             if (board[row][col] === "") {
               dispatch(move(row, col));
+              const winner = detWinner(board);
+              let getWinner = () => {
+                return {
+                  type: "Pending",
+                };
+              };
+
+              if (winner === "X") getWinner = winnerX;
+              if (winner === "O") getWinner = winnerO;
+              if (winner === "Draw") getWinner = winnerDraw;
               dispatch(getWinner());
               dispatch(turnF());
             }

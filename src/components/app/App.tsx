@@ -5,6 +5,7 @@ import { StateType } from "../../state/reducers/allReducers";
 import ResBoard from "../resBoard/ResBoard";
 
 function App() {
+  // console.log("App");
   const turn = useSelector<StateType, string>((state) => state.turn);
   const winner = useSelector<StateType, string>((state) => state.winner);
   let view;
