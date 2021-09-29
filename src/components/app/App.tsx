@@ -14,7 +14,7 @@ function App() {
     view = (
       <>
         <Board />
-        <div className="mt-3" style={{ marginBottom: "10em" }}>
+        <div className="mt-3" style={{ marginBottom: "9em" }}>
           <h3>Turn: {turn} Player</h3>
         </div>
       </>
@@ -26,7 +26,7 @@ function App() {
         <div className="mt-3">
           <h3>Winner: {winner}</h3>
         </div>
-        <div className="mt-3" style={{ marginBottom: "7em" }}>
+        <div className="mt-3" style={{ marginBottom: "5em" }}>
           <PlayAgain />
         </div>
       </>

@@ -1,7 +1,13 @@
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import allReducers from "./reducers/allReducers";
 
-const store = createStore(allReducers);
-// store.subscribe(() => console.log(store.getState()));
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(allReducers, composeEnhancers());
 
 export default store;
