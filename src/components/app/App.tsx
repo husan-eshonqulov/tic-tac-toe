@@ -12,30 +12,35 @@ function App() {
 
   if (winner === "") {
     view = (
-      <>
+      <div>
         <Board />
-        <div className="mt-3" style={{ marginBottom: "9em" }}>
+        <div className="mt-3 text-center">
           <h3>Turn: {turn} Player</h3>
         </div>
-      </>
+      </div>
     );
   } else {
     view = (
-      <>
+      <div>
         <ResBoard />
-        <div className="mt-3">
+        <div className="mt-3 text-center">
           <h3>Winner: {winner}</h3>
         </div>
-        <div className="mt-3" style={{ marginBottom: "5em" }}>
+        <div className="mt-3 text-center">
           <PlayAgain />
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center h-100vh">
-      {view}
+    <div className="">
+      <div
+        className="d-flex flex-column align-items-center"
+        style={{ marginTop: "25vh" }}
+      >
+        {view}
+      </div>
     </div>
   );
 }
